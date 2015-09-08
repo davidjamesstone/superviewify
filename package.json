@@ -4,7 +4,7 @@
   "description": "Browserify transform turning superviews.js template language to Googles incremental-dom",
   "main": "index.js",
   "scripts": {
-    "test": "browserify test/index.js -t [./index.js --name xx] -o test/bundle.js"
+    "test": "browserify test/index.js -t [./index.js --argstr model] -o test/bundle.js"
   },
   "repository": {
     "type": "git",

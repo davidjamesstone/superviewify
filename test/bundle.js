@@ -2,7 +2,7 @@
 var template = require('./template.html')
 
 },{"./template.html":2}],2:[function(require,module,exports){
-module.exports = function (data) {
+module.exports = function (model) {
 elementOpen("div", null, null, "title", data.cls)
   text(" \
     My name is " + data.cls + " my age is " + data.age + " \
