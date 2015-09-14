@@ -7,8 +7,9 @@ module.exports = function (file, options) {
   }
 
   return through(function (buf, enc, next) {
-    var name = options && options.argstr ? options.argstr : 'data'
-    this.push('module.exports = function (' + name + ') {\n' + superviews(buf) + '\n};\n')
+    var name = options && options.name ? options.name : 'description'
+    var args = options && options.args ? options.args : 'data'
+    this.push('module.exports = ' + superviews(buf, name, args) + ';\n')
     next()
   })
 }

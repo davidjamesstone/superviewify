@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/davidjamesstone/superviewify#readme",
   "dependencies": {
-    "superviews.js": "^0.0.4",
+    "superviews.js": "^0.0.6",
     "through2": "^2.0.0"
   },
   "devDependencies": {
