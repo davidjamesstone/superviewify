@@ -5,6 +5,7 @@ var header = 'var IncrementalDOM = require(\'incremental-dom\')\n' +
 'var elementOpen = IncrementalDOM.elementOpen\n' +
 'var elementVoid = IncrementalDOM.elementVoid\n' +
 'var elementClose = IncrementalDOM.elementClose\n' +
+'var elementPlaceholder = IncrementalDOM.elementPlaceholder\n' +
 'var text = IncrementalDOM.text\n\n'
 
 module.exports = function (file, options) {
@@ -16,7 +17,7 @@ module.exports = function (file, options) {
     var name = options && options.name ? options.name : 'description'
     var args = options && options.args ? options.args : 'data'
     var idom = options && options.insertidom ? options.insertidom : true
-    var output = 'module.exports = ' + superviews(buf, name, args) + ';\n'
+    var output = 'module.exports = ' + superviews(buf, name, args).slice(1) + ';\n'
 
     if (idom) {
       output = header + output

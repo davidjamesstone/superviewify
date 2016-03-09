@@ -1,1 +1,1 @@
-require('./template.html')
+require('./readme.html')
