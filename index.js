@@ -1,5 +1,6 @@
 var through = require('through2')
 var superviews = require('superviews.js')
+
 var header = 'var IncrementalDOM = require(\'incremental-dom\')\n' +
 'var patch = IncrementalDOM.patch\n' +
 'var elementOpen = IncrementalDOM.elementOpen\n' +
@@ -7,6 +8,7 @@ var header = 'var IncrementalDOM = require(\'incremental-dom\')\n' +
 'var elementClose = IncrementalDOM.elementClose\n' +
 'var elementPlaceholder = IncrementalDOM.elementPlaceholder\n' +
 'var skip = IncrementalDOM.skip\n' +
+'var currentElement = IncrementalDOM.currentElement\n' +
 'var text = IncrementalDOM.text\n\n'
 
 module.exports = function (file, options) {
