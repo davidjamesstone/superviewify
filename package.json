@@ -1,6 +1,6 @@
 {
   "name": "superviewify",
-  "version": "0.0.10",
+  "version": "0.4.0",
   "description": "Browserify transform turning superviews.js template language to Googles incremental-dom",
   "main": "index.js",
   "scripts": {
