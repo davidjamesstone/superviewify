@@ -6,7 +6,6 @@ var header = 'var IncrementalDOM = require(\'incremental-dom\')\n' +
 'var elementOpen = IncrementalDOM.elementOpen\n' +
 'var elementVoid = IncrementalDOM.elementVoid\n' +
 'var elementClose = IncrementalDOM.elementClose\n' +
-'var elementPlaceholder = IncrementalDOM.elementPlaceholder\n' +
 'var skip = IncrementalDOM.skip\n' +
 'var currentElement = IncrementalDOM.currentElement\n' +
 'var text = IncrementalDOM.text\n\n'
