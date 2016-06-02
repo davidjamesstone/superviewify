@@ -6,9 +6,6 @@ Browserify transform turning [superviews.js](https://github.com/davidjamesstone/
   - default: 'description'
 - `args` `String`
   - default: 'data'
-- `insertidom` `Boolean`
-  - Include incremental-dom imports e.g. `var idom = require('incremental-dom')` in the output
-  - default: true
 
 ## Example
-`browserify template.html -t [superviewify --args x,y,z] -o bundle.js`
+`browserify template.html -t [superviewify] -o bundle.js`

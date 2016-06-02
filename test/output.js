@@ -1074,22 +1074,18 @@ require('./readme.html')
 var IncrementalDOM = require('incremental-dom')
 var patch = IncrementalDOM.patch
 var elementOpen = IncrementalDOM.elementOpen
-var elementVoid = IncrementalDOM.elementVoid
 var elementClose = IncrementalDOM.elementClose
-var elementPlaceholder = IncrementalDOM.elementPlaceholder
 var skip = IncrementalDOM.skip
 var currentElement = IncrementalDOM.currentElement
 var text = IncrementalDOM.text
 
-module.exports = (function () {
-var hoisted1 = ["title", "boo"]
-var hoisted2 = ["title", "I will render only once. Subsequent patches will be skipped."]
+var hoisted1 = ["title", "I will render only once. Subsequent patches will be skipped.", "tag", "div"]
+var hoisted2 = ["type", "text"]
 var hoisted3 = ["type", "text"]
-var hoisted4 = ["type", "text"]
-var hoisted5 = ["title", "hello"]
-var hoisted6 = ["class", "list-header"]
+var hoisted4 = ["title", "hello"]
+var hoisted5 = ["class", "list-header"]
 
-return function bar (foo) {
+module.exports = function bar (foo) {
 function add (item) {
   todos.push(item)
 }
@@ -1097,9 +1093,8 @@ function add (item) {
 function remove () {
   todos.pop()
 }
-elementOpen("span", "foo", hoisted1)
-elementClose("span")
-elementPlaceholder("div", "bar", hoisted2)
+elementOpen("placeholder", "bar", hoisted1)
+elementClose("placeholder")
 elementOpen("div", null, null, "class", data.cssClass)
   elementOpen("a", null, null, "href", "http://www.google.co.uk?q=" + (data.query) + "")
   elementClose("a")
@@ -1117,7 +1112,7 @@ elementOpen("div", null, null, "class", data.cssClass)
   alert(hi)})
     text("Say hi")
   elementClose("button")
-  elementOpen("input", null, hoisted3, "value", data.val, "onchange", function ($event) {
+  elementOpen("input", "f8ff7cb1-93a9-4e70-b4f9-078c37d296d6", hoisted2, "value", data.val, "onchange", function ($event) {
     $event.preventDefault();
     var $element = this;
   data.val = this.value})
@@ -1127,7 +1122,7 @@ elementOpen("div", null, null, "class", data.cssClass)
       elementOpen("span", null, null, "class", data.bar + ' other-css')
         text("description")
       elementClose("span")
-      elementOpen("input", null, hoisted4, "disabled", data.isDisabled)
+      elementOpen("input", "917d8b92-6fa1-403a-9509-2e200a4a282a", hoisted3, "disabled", data.isDisabled)
       elementClose("input")
     elementClose("p")
   }
@@ -1150,55 +1145,75 @@ elementOpen("div", null, null, "class", data.cssClass)
     text("My style changes")
   elementClose("span")
   elementOpen("ul")
-    ;(Array.isArray(data.items) ? data.items : Object.keys(data.items)).forEach(function(item, $index) {
-      elementOpen("li", $index)
-        elementOpen("span", null, null, "class",  $index % 2 ? 'odd' : 'even' )
-          text("" + ($index) + "")
-        elementClose("span")
-        elementOpen("input", null, null, "value", item.name)
-        elementClose("input")
-      elementClose("li")
-    }, data.items)
+    if (data.items) {
+      ;(data.items.forEach ? data.items : Object.keys(data.items)).forEach(function($value, $item, $target) {
+        var item = $value
+        var $key = "9bb8d154-1a7a-4ec6-b371-1e330f72bf4a_" + $item
+        elementOpen("li", $key)
+          elementOpen("span", null, null, "class",  $index % 2 ? 'odd' : 'even' )
+            text("" + ($index) + "")
+          elementClose("span")
+          elementOpen("input", null, null, "value", item.name)
+          elementClose("input")
+        elementClose("li")
+      }, data.items)
+    }
   elementClose("ul")
   elementOpen("ul")
-    ;(Array.isArray(data.arr) ? data.arr : Object.keys(data.arr)).forEach(function(item, $index) {
-      elementOpen("li", $index)
-        elementOpen("span")
-          text("" + (item.name) + "")
-        elementClose("span")
-      elementClose("li")
-    }, data.arr)
-  elementClose("ul")
-  elementOpen("ul")
-    ;(Array.isArray(data.obj) ? data.obj : Object.keys(data.obj)).forEach(function(key, $index) {
-      elementOpen("li", $index)
-        elementOpen("span", null, hoisted5)
-          text("" + (key) + " - " + (data.obj[key]) + "")
-        elementClose("span")
-      elementClose("li")
-    }, data.obj)
-  elementClose("ul")
-  elementOpen("ul")
-    ;(Array.isArray(data.products) ? data.products : Object.keys(data.products)).forEach(function(product, $index) {
-      elementOpen("li", product.id)
-        text(" \
-              " + (product.name) + " \
-            ")
-      elementClose("li")
-    }, data.products)
-  elementClose("ul")
-  elementOpen("ul")
-    if (data.items.length) {
-      ;(Array.isArray(data.arr) ? data.arr : Object.keys(data.arr)).forEach(function(item, $index) {
-        elementOpen("li", item.id)
-          text(" \
-                " + (item.name) + " \
-              ")
+    if (data.arr) {
+      ;(data.arr.forEach ? data.arr : Object.keys(data.arr)).forEach(function($value, $item, $target) {
+        var item = $value
+        var $key = "f498ae3d-1a2e-49d4-9fec-9adfb3c86e83_" + $item
+        elementOpen("li", $key)
+          elementOpen("span")
+            text("" + (item.name) + "")
+          elementClose("span")
         elementClose("li")
       }, data.arr)
     }
+  elementClose("ul")
+  elementOpen("ul")
+    if (data.obj) {
+      ;(data.obj.forEach ? data.obj : Object.keys(data.obj)).forEach(function($value, $item, $target) {
+        var key = $value
+        var $key = "41c921ce-e21e-4d2f-8bca-6d04b9be2607_" + $item
+        elementOpen("li", $key)
+          elementOpen("span", "dfe9ba10-585f-4112-9107-0611ccbb8b71_" + $key, hoisted4)
+            text("" + (key) + " - " + (data.obj[key]) + "")
+          elementClose("span")
+        elementClose("li")
+      }, data.obj)
+    }
+  elementClose("ul")
+  elementOpen("ul")
+    if (data.products) {
+      ;(data.products.forEach ? data.products : Object.keys(data.products)).forEach(function($value, $item, $target) {
+        var product = $value
+        var $key = "d55861d6-3197-42aa-8a54-528ad3042c80_" + product.id
+        elementOpen("li", $key)
+          text(" \
+                " + (product.name) + " \
+              ")
+        elementClose("li")
+      }, data.products)
+    }
+  elementClose("ul")
+  elementOpen("ul")
+    if (data.items.length) {
+      if (data.arr) {
+        ;(data.arr.forEach ? data.arr : Object.keys(data.arr)).forEach(function($value, $item, $target) {
+          var item = $value
+          var $key = "3a378a22-70cd-43fa-a712-85c84ab9f04b_" + item.id
+          elementOpen("li", $key)
+            text(" \
+                  " + (item.name) + " \
+                ")
+          elementClose("li")
+        }, data.arr)
+      }
+    }
     if (!data.items.length) {
-      elementOpen("li", null, hoisted6)
+      elementOpen("li", "571cb2b3-64c6-46b3-aa7a-223e7f6439f8", hoisted5)
         text(" \
               No items found \
             ")
@@ -1207,6 +1222,5 @@ elementOpen("div", null, null, "class", data.cssClass)
   elementClose("ul")
 elementClose("div")
 }
-})();
 
 },{"incremental-dom":1}]},{},[2]);
